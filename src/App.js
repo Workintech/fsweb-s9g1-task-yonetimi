@@ -19,8 +19,16 @@ function App() {
     setTeam([...team, yeniKisi])
   }
 
+  //data.js'teki array'in içindeki obleri (initialTasks) ilk değer olarak tutan tasks state'imi güncelleyeceğim. setTasks ile.
   function handleComplete(id) {
     console.log("tamamlama fonksiyonunu buraya yazın")
+    const newTask = [...tasks]; //tasks state'imi kopyalayıp değiştireceğim. Bu kopya oluşturulduktan sonra değişiklik yapılacak. bu kopyayı, içerde kullanmak için bir değişkene atıyorum.
+    newTask.forEach(task => { //içindeki her bir task'i kontrol ediyorum, iterate.
+      if (task.id === id) {
+        task.status = "yapıldı";
+      } // task.id ile id'leri karşılaştırıyorum. task.id ile id'leri eşleştiğimizde task.status'ını yapıldı olarak değiştiriyorum.
+    });
+    setTasks(newTask);
   }
 
   return (
